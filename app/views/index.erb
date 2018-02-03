@@ -1,0 +1,10 @@
+<ol>
+<% @posts.each do |k| %>
+<h4><li><a href="/post/<%=k.id%>"><%=k.title%></a></li></h4>
+<p>
+	<a href="/post/upvote/<%=k.id%>">< </a><%=k.points%> points<a href="/post/downvote/<%=k.id%>"> > </a> by 
+	<%= k.user.first_name %>, 
+	<%= (Time.now - k.created_at).floor %> seconds ago, with <%= k.comments.count %> comments
+</p>
+<% end %>
+</ol>

@@ -1,0 +1,26 @@
+<h2><%= @post.title %></h2>
+<h4><%= @post.body %></h4>
+<a href="/post/upvote/<%=@post.id%>">< </a><%=@post.points%> points<a href="/post/downvote/<%=@post.id%>"> > </a> by ADD NAME HERE, <%= (Time.now - @post.created_at).floor %> seconds ago, with <%= @post.comments.count %> comments
+
+<ol>
+<h4>Comments:</h4>
+<% @post.comments.each do |k| %>
+<li><%= k.description %></li>
+<br>
+<p>
+	<%@user_id = k.user_id%>
+	<%@user = User.find_by(id: @user_id) %>
+	<%= @user.first_name %>
+</p>
+<br>
+<% end %>
+</ol>
+
+<br>
+Add a comment:
+<br>
+<form action="/post/comment/<%=@post.id%>" method="post">
+Comment:
+<input type="text" name="comment">
+<input type="submit">
+</form>

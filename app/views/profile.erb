@@ -1,0 +1,18 @@
+<h2><%= @user.first_name %></h2>
+<h4><%= @user.email %></h4>
+<br>
+User posts:<br>
+<% @posts = Post.where(user_id: session[:user_id]) %>
+<% @posts.each do |l| %>
+<%= l.title %><br>
+<a href="/post/<%=l.id%>">See post</a>
+
+<% end %>
+<br>
+User comments:<br>
+<% @comments = Comment.where(user_id: session[:user_id]) %>
+<% @comments.each do |k| %>
+<br>
+	<%= k.description %><br>
+	<a href="/post/<%=k.post_id%>">See post</a>
+	<% end %>
